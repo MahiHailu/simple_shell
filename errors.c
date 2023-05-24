@@ -1,85 +1,79 @@
 #include "shell.h"
 
 /**
- * _eputs - prints an input string
- * @str: the string to be printed
- *
- * Return: Nothing
+ * _eputs - a function that accept str
+ * @str: variable 2b printed
+ * Return: no value returned
  */
 void _eputs(char *str)
 {
-	int i = 0;
+	int itr = 0;
 
 	if (!str)
 		return;
-	while (str[i] != '\0')
+	while (str[itr] != '\0')
 	{
-		_eputchar(str[i]);
-		i++;
+		_eputchar(str[itr]);
+		itr++;
 	}
 }
 
 /**
- * _eputchar - writes the character c to stderr
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * _eputchar - a function that print chr
+ * @c: printed chr
+ * Return: 1 4success else -1
  */
 int _eputchar(char c)
 {
-	static int i;
+	static int itr;
 	static char buf[WRITE_BUF_SIZE];
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (c == BUF_FLUSH || itr >= WRITE_BUF_SIZE)
 	{
-		write(2, buf, i);
-		i = 0;
+		write(2, buf, itr);
+		itr = 0;
 	}
 	if (c != BUF_FLUSH)
-		buf[i++] = c;
+		buf[itr++] = c;
 	return (1);
 }
 
 /**
- * _putfd - writes the character c to given fd
- * @c: The character to print
- * @fd: The filedescriptor to write to
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * _putfd - a function that accept fd as input
+ * @c: the variable vlut 2bprinted
+ * @fd: description 
+ * Return: 1 for success else -1
  */
 int _putfd(char c, int fd)
 {
-	static int i;
+	static int itr;
 	static char buf[WRITE_BUF_SIZE];
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (c == BUF_FLUSH || itr >= WRITE_BUF_SIZE)
 	{
-		write(fd, buf, i);
-		i = 0;
+		write(fd, buf, itr);
+		itr = 0;
 	}
 	if (c != BUF_FLUSH)
-		buf[i++] = c;
+		buf[itr++] = c;
 	return (1);
 }
 
 /**
- * _putsfd - prints an input string
- * @str: the string to be printed
- * @fd: the filedescriptor to write to
- *
- * Return: the number of chars put
+ * _putsfd - a function that print input
+ * @str: variable 2bprinted
+ * @fd: description
+ * Return: the amout of char
  */
 int _putsfd(char *str, int fd)
 {
-	int i = 0;
+	int itr = 0;
 
 	if (!str)
 		return (0);
 	while (*str)
 	{
-		i += _putfd(*str++, fd);
+		itr += _putfd(*str++, fd);
 	}
-	return (i);
+	return (itr);
 }
