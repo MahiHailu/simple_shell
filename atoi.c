@@ -25,9 +25,9 @@ int is_delim(char c, char *delim)
 }
 
 /**
- * _isalpha - it validiate chr
- * @c: the char 2b checked
- * Return: if it is non numeric 1 else 0
+ * _isalpha - checks for alphabetic character it checks c
+ * @c: The character to input
+ * Return: 1 if c is alphabetic, 0 otherwise
  */
 
 int _isalpha(int c)
@@ -39,35 +39,35 @@ int _isalpha(int c)
 }
 
 /**
- * atoi - change srng 2int
- * @s: d variable that will b changed
- * Return: 0 for num else chenge
+ * _atoi - converts a string to an integer
+ * @s: the string to be converted
+ * Return: 0 if no numbers in string, converted number otherwise
  */
 
 int _atoi(char *s)
 {
-	int x, _si = 1, _fl = 0, _out;
-	unsigned int _re = 0;
+	int i, sign = 1, flag = 0, output;
+	unsigned int result = 0;
 
-	for (x = 0; s[i] != '\0' && _fl != 2; x++)
+	for (i = 0; s[i] != '\0' && flag != 2; i++)
 	{
 		if (s[i] == '-')
-			_si *= -1;
+			sign *= -1;
 
 		if (s[i] >= '0' && s[i] <= '9')
 		{
-			_fl = 1;
-			_re *= 10;
-			_re += (s[i] - '0');
+			flag = 1;
+			result *= 10;
+			result += (s[i] - '0');
 		}
-		else if (_fl == 1)
-			_fl = 2;
+		else if (flag == 1)
+			flag = 2;
 	}
 
-	if (_si == -1)
-		_out = -_re;
+	if (sign == -1)
+		output = -result;
 	else
-		_out = _re;
+		output = result;
 
-	return (_out);
+	return (output);
 }
